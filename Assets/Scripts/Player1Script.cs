@@ -4,36 +4,42 @@ using UnityEngine;
 
 public class Player1Script : MonoBehaviour
 {
-    // Variables
-    public float movementSpeed = 0.2f;
+    /// Variables
+    public float force = 2f;
+    public Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(Vector2.up * movementSpeed);
+            rb.AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(Vector2.down * movementSpeed);
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector2.right * movementSpeed);
+            rb.AddForce(new Vector2(0, -1), ForceMode2D.Impulse);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector2.left * movementSpeed);
+            rb.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
         }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
+        }
+    }
+
+    void Update()
+    {
+        
     }
 }
