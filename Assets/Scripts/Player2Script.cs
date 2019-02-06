@@ -7,7 +7,7 @@ public class Player2Script : MonoBehaviour
     // Variables
     public float force = 2f;
     public Rigidbody2D rb;
-
+    public Player1Script player1;
 
     // Start is called before the first frame update
     void Start()
@@ -42,5 +42,13 @@ public class Player2Script : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EndGameTrigger")
+        {
+            player1.playersInTrigger++;
+        }
     }
 }

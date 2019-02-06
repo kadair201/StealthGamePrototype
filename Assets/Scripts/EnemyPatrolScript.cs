@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyPatrolScript : MonoBehaviour
 {
     public Transform[] enemyPoints;
-    int point = -1;
+    public int point = -1;
     Vector2 direction;
     float distance;
     float speed = 0.01f;
@@ -49,5 +50,14 @@ public class EnemyPatrolScript : MonoBehaviour
         // cycle through array of points
         
         Debug.Log("Point " + point);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
     }
 }
