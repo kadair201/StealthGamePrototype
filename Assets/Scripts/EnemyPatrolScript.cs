@@ -10,7 +10,7 @@ public class EnemyPatrolScript : MonoBehaviour
     public int point = -1;
     Vector2 direction;
     float distance;
-    float speed = 0.01f;
+    float speed = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,10 @@ public class EnemyPatrolScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // move in direction of point
-        transform.Translate(direction * speed);
+        transform.Translate(direction * speed * Time.deltaTime);
 
         // find distance between enemy and point
         distance = Vector3.Distance(enemyPoints[point].position, transform.position);
